@@ -1,0 +1,7 @@
+make exit 0 for sky130hd npu_pe_int8 10 ns
+make exit 0 for sky130hd npu_pe_int8 6 ns
+make exit 0 for sky130hd npu_pe_int8 5 ns
+make exit 2 for sky130hd npu_pe_int8 4 ns
+make exit 1 for sky130hd npu_pe_fp8 9 ns
+make exit 2 for sky130hd npu_pe_fp8 8 ns
+make exit 2 for sky130hd npu_pe_fp8 7 ns

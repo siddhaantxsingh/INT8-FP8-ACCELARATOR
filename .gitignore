@@ -1,0 +1,11 @@
+tb/sim_build*/
+tb/results.xml
+tb/*.vcd
+__pycache__/
+perf*.txt
+!bench/results/perf*.txt
+.venv/
+flow/build/
+flow/runs/
+tb/sim_build*/
+tb/results*.xml

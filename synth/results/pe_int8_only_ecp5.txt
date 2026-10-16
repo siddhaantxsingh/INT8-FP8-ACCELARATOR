@@ -1,0 +1,18 @@
+
+19. Printing statistics.
+
+=== npu_pe ===
+
+   Number of wires:                 70
+   Number of wire bits:            375
+   Number of public wires:          70
+   Number of public wire bits:     375
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                118
+     CCU2C                          16
+     LUT4                           49
+     MULT18X18D                      1
+     TRELLIS_FF                     52
+

@@ -1,0 +1,25 @@
+# Area of the building blocks (generic gates and ECP5 LUT4/DSP mapping).
+# Run from the project root: yosys -q -s synth/area.ys
+read_verilog -sv rtl/npu_pe.sv
+chparam -set FP8_EN 1 -set ACC_W 80 npu_pe
+synth -top npu_pe -flatten
+tee -o synth/results/pe_int8_fp8_generic.txt stat
+design -reset
+read_verilog -sv rtl/npu_pe.sv
+chparam -set FP8_EN 0 -set ACC_W 32 npu_pe
+synth -top npu_pe -flatten
+tee -o synth/results/pe_int8_only_generic.txt stat
+design -reset
+read_verilog -sv rtl/npu_post.sv
+synth -top npu_post -flatten
+tee -o synth/results/post_generic.txt stat
+design -reset
+read_verilog -sv rtl/npu_pe.sv
+chparam -set FP8_EN 1 -set ACC_W 80 npu_pe
+synth_ecp5 -top npu_pe
+tee -o synth/results/pe_int8_fp8_ecp5.txt stat
+design -reset
+read_verilog -sv rtl/npu_pe.sv
+chparam -set FP8_EN 0 -set ACC_W 32 npu_pe
+synth_ecp5 -top npu_pe
+tee -o synth/results/pe_int8_only_ecp5.txt stat

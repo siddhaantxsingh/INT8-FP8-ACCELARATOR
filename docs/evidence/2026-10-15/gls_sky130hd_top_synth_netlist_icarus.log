@@ -1,0 +1,60 @@
+netlist uses 148 cell types
+make: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+rm -f results_small_sky_synth_lib.xml
+"make" -f Makefile.small results_small_sky_synth_lib.xml
+make[1]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+mkdir -p sim_build_small_sky_synth_lib
+/usr/bin/iverilog -o sim_build_small_sky_synth_lib/sim.vvp -D COCOTB_SIM=1 -s npu_top_pd -g2012  -f sim_build_small_sky_synth_lib/cmds.f  /home/user/PROJECTS/int8-fp8-accelerator/flow/build/sky_top_synth.v /home/user/PROJECTS/int8-fp8-accelerator/flow/build/gls_sky_synth_lib/cells_lib.v /home/user/PROJECTS/int8-fp8-accelerator/flow/build/gls_sky_synth_lib/cells_phys.v
+rm -f results_small_sky_synth_lib.xml
+MODULE=test_small TESTCASE= TOPLEVEL=npu_top_pd TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build_small_sky_synth_lib/sim.vvp  
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1792053105
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_int8_random_shapes
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_int8_extremes_and_bias
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_int8_requantisation
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_fp8_e4m3
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_fp8_e5m2_and_specials
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_fp8_exact_accumulation_and_ties
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_bad_dimensions_set_error
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_cycle_counts
+     0.00ns INFO     cocotb.regression                  running small_int8_random_shapes (1/8)
+ 10890.00ns INFO     cocotb.regression                  small_int8_random_shapes passed
+ 10890.00ns INFO     cocotb.regression                  running small_int8_extremes_and_bias (2/8)
+ 17750.00ns INFO     cocotb.regression                  small_int8_extremes_and_bias passed
+ 17750.00ns INFO     cocotb.regression                  running small_int8_requantisation (3/8)
+ 26570.00ns INFO     cocotb.regression                  small_int8_requantisation passed
+ 26570.00ns INFO     cocotb.regression                  running small_fp8_e4m3 (4/8)
+ 35620.00ns INFO     cocotb.regression                  small_fp8_e4m3 passed
+ 35620.00ns INFO     cocotb.regression                  running small_fp8_e5m2_and_specials (5/8)
+ 43580.00ns INFO     cocotb.regression                  small_fp8_e5m2_and_specials passed
+ 43580.00ns INFO     cocotb.regression                  running small_fp8_exact_accumulation_and_ties (6/8)
+ 44550.01ns INFO     cocotb.regression                  small_fp8_exact_accumulation_and_ties passed
+ 44550.01ns INFO     cocotb.regression                  running small_bad_dimensions_set_error (7/8)
+ 48940.01ns INFO     cocotb.regression                  small_bad_dimensions_set_error passed
+ 48940.01ns INFO     cocotb.regression                  running small_cycle_counts (8/8)
+ 55080.01ns INFO     cocotb.regression                  small_cycle_counts passed
+ 55080.01ns INFO     cocotb.regression                  **********************************************************************************************************
+                                                        ** TEST                                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************
+                                                        ** test_small.small_int8_random_shapes                PASS       10890.00          97.07        112.19  **
+                                                        ** test_small.small_int8_extremes_and_bias            PASS        6860.00          26.10        262.86  **
+                                                        ** test_small.small_int8_requantisation               PASS        8820.00         295.89         29.81  **
+                                                        ** test_small.small_fp8_e4m3                          PASS        9050.00          75.86        119.30  **
+                                                        ** test_small.small_fp8_e5m2_and_specials             PASS        7960.00          45.91        173.38  **
+                                                        ** test_small.small_fp8_exact_accumulation_and_ties   PASS         970.00           1.58        613.19  **
+                                                        ** test_small.small_bad_dimensions_set_error          PASS        4390.00           7.47        587.94  **
+                                                        ** test_small.small_cycle_counts                      PASS        6140.00          56.67        108.34  **
+                                                        **********************************************************************************************************
+                                                        ** TESTS=8 PASS=8 FAIL=0 SKIP=0                                  55080.01         606.65         90.79  **
+                                                        **********************************************************************************************************
+                                                        
+make[1]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+make: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+
+real	11m56.105s
+user	5m50.136s
+sys	0m8.146s

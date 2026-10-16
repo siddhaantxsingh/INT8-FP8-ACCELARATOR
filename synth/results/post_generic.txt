@@ -1,0 +1,24 @@
+
+11. Printing statistics.
+
+=== npu_post ===
+
+   Number of wires:              12457
+   Number of wire bits:          12698
+   Number of public wires:          11
+   Number of public wire bits:     252
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              12478
+     $_ANDNOT_                    3914
+     $_AND_                        228
+     $_MUX_                        979
+     $_NAND_                       150
+     $_NOR_                        825
+     $_NOT_                        594
+     $_ORNOT_                      712
+     $_OR_                        2159
+     $_XNOR_                       985
+     $_XOR_                       1932
+

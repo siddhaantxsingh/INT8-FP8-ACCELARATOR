@@ -1,0 +1,232 @@
+verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL -Wno-UNUSEDPARAM \
+  rtl/npu_pe.sv rtl/npu_post.sv rtl/npu_top.sv --top-module npu_top
+python3 -m pytest -q model/tests
+....                                                                     [100%]
+4 passed in 17.43s
+NPU_PERF_OUT=/home/user/PROJECTS/int8-fp8-accelerator/bench/results/perf_n8.txt make -C tb NPU_N=8
+make[1]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+rm -f results.xml
+"make" -f Makefile results.xml
+make[2]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+mkdir -p sim_build_n8
+/usr/bin/verilator -cc --exe -Mdir sim_build_n8 -DCOCOTB_SIM=1 --top-module npu_top --timescale 1ns/1ps --vpi --public-flat-rw --prefix Vtop -o Vtop -LDFLAGS "-Wl,-rpath,/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -L/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -lcocotbvpi_verilator" -GN=8 -Wno-fatal --x-assign unique --x-initial unique /home/user/PROJECTS/int8-fp8-accelerator/tb/../rtl/npu_pe.sv /home/user/PROJECTS/int8-fp8-accelerator/tb/../rtl/npu_post.sv /home/user/PROJECTS/int8-fp8-accelerator/tb/../rtl/npu_top.sv /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/share/lib/verilator/verilator.cpp
+make -C sim_build_n8  -f Vtop.mk
+make[3]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb/sim_build_n8'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -Os -c -o verilator.o /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/share/lib/verilator/verilator.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated_vpi.o /usr/share/verilator/include/verilated_vpi.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated_threads.o /usr/share/verilator/include/verilated_threads.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -x c++-header Vtop__pch.h -o Vtop__pch.h.fast.gch
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop.o Vtop.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop___024root__DepSet_h84412442__0.o Vtop___024root__DepSet_h84412442__0.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop___024root__DepSet_h84412442__1.o Vtop___024root__DepSet_h84412442__1.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop___024root__DepSet_heccd7ead__0.o Vtop___024root__DepSet_heccd7ead__0.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop_npu_pe__DepSet_hd6ab67f1__0.o Vtop_npu_pe__DepSet_hd6ab67f1__0.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop_npu_pe__DepSet_hd6ab67f1__1.o Vtop_npu_pe__DepSet_hd6ab67f1__1.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop_npu_pe__DepSet_hd6ab67f1__2.o Vtop_npu_pe__DepSet_hd6ab67f1__2.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop_npu_pe__DepSet_hd6ab67f1__3.o Vtop_npu_pe__DepSet_hd6ab67f1__3.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.fast -c -o Vtop__Dpi.o Vtop__Dpi.cpp
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -x c++-header Vtop__pch.h -o Vtop__pch.h.slow.gch
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.slow -c -o Vtop___024root__Slow.o Vtop___024root__Slow.cpp
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.slow -c -o Vtop___024root__DepSet_h84412442__0__Slow.o Vtop___024root__DepSet_h84412442__0__Slow.cpp
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.slow -c -o Vtop___024root__DepSet_heccd7ead__0__Slow.o Vtop___024root__DepSet_heccd7ead__0__Slow.cpp
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.slow -c -o Vtop_npu_pe__Slow.o Vtop_npu_pe__Slow.cpp
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.slow -c -o Vtop_npu_pe__DepSet_hd6ab67f1__0__Slow.o Vtop_npu_pe__DepSet_hd6ab67f1__0__Slow.cpp
+g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -include Vtop__pch.h.slow -c -o Vtop__Syms.o Vtop__Syms.cpp
+echo "" > Vtop__ALL.verilator_deplist.tmp
+Archive ar -rcs Vtop__ALL.a Vtop.o Vtop___024root__DepSet_h84412442__0.o Vtop___024root__DepSet_h84412442__1.o Vtop___024root__DepSet_heccd7ead__0.o Vtop_npu_pe__DepSet_hd6ab67f1__0.o Vtop_npu_pe__DepSet_hd6ab67f1__1.o Vtop_npu_pe__DepSet_hd6ab67f1__2.o Vtop_npu_pe__DepSet_hd6ab67f1__3.o Vtop__Dpi.o Vtop___024root__Slow.o Vtop___024root__DepSet_h84412442__0__Slow.o Vtop___024root__DepSet_heccd7ead__0__Slow.o Vtop_npu_pe__Slow.o Vtop_npu_pe__DepSet_hd6ab67f1__0__Slow.o Vtop__Syms.o
+g++     verilator.o verilated.o verilated_dpi.o verilated_vpi.o verilated_threads.o Vtop__ALL.a   -Wl,-rpath,/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -L/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -lcocotbvpi_verilator  -pthread -lpthread -latomic   -o Vtop
+rm Vtop__ALL.verilator_deplist.tmp
+make[3]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb/sim_build_n8'
+rm -f results.xml
+MODULE=test_npu TESTCASE= TOPLEVEL=npu_top TOPLEVEL_LANG=verilog \
+         sim_build_n8/Vtop  -GN=8 -Wno-fatal --x-assign unique --x-initial unique  
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Verilator version 5.020 2024-01-01
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1792052510
+     0.00ns INFO     cocotb.regression                  Found test test_npu.int8_random_shapes
+     0.00ns INFO     cocotb.regression                  Found test test_npu.int8_extremes_and_bias
+     0.00ns INFO     cocotb.regression                  Found test test_npu.int8_requantisation
+     0.00ns INFO     cocotb.regression                  Found test test_npu.fp8_e4m3_random
+     0.00ns INFO     cocotb.regression                  Found test test_npu.fp8_e5m2_random_and_specials
+     0.00ns INFO     cocotb.regression                  Found test test_npu.fp8_exact_accumulation_and_ties
+     0.00ns INFO     cocotb.regression                  Found test test_npu.bad_dimensions_set_error
+     0.00ns INFO     cocotb.regression                  Found test test_npu.cycle_counts_match_the_schedule
+     0.00ns INFO     cocotb.regression                  running int8_random_shapes (1/8)
+ 56490.00ns INFO     cocotb.regression                  int8_random_shapes passed
+ 56490.00ns INFO     cocotb.regression                  running int8_extremes_and_bias (2/8)
+ 86510.00ns INFO     cocotb.regression                  int8_extremes_and_bias passed
+ 86510.00ns INFO     cocotb.regression                  running int8_requantisation (3/8)
+126920.00ns INFO     cocotb.regression                  int8_requantisation passed
+126920.00ns INFO     cocotb.regression                  running fp8_e4m3_random (4/8)
+176520.00ns INFO     cocotb.regression                  fp8_e4m3_random passed
+176520.00ns INFO     cocotb.regression                  running fp8_e5m2_random_and_specials (5/8)
+193090.01ns INFO     cocotb.regression                  fp8_e5m2_random_and_specials passed
+193090.01ns INFO     cocotb.regression                  running fp8_exact_accumulation_and_ties (6/8)
+                                                          Results a sequential FP32 accumulation would get wrong.
+194060.01ns INFO     cocotb.regression                  fp8_exact_accumulation_and_ties passed
+194060.01ns INFO     cocotb.regression                  running bad_dimensions_set_error (7/8)
+198450.01ns INFO     cocotb.regression                  bad_dimensions_set_error passed
+198450.01ns INFO     cocotb.regression                  running cycle_counts_match_the_schedule (8/8)
+575950.01ns INFO     cocotb.regression                  cycle_counts_match_the_schedule passed
+575950.01ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** test_npu.int8_random_shapes                PASS       56490.00           1.47      38422.42  **
+                                                        ** test_npu.int8_extremes_and_bias            PASS       30020.00           0.79      37937.65  **
+                                                        ** test_npu.int8_requantisation               PASS       40410.00           1.04      38689.87  **
+                                                        ** test_npu.fp8_e4m3_random                   PASS       49600.00           1.46      34013.15  **
+                                                        ** test_npu.fp8_e5m2_random_and_specials      PASS       16570.00           0.36      46065.81  **
+                                                        ** test_npu.fp8_exact_accumulation_and_ties   PASS         970.00           0.02      45167.18  **
+                                                        ** test_npu.bad_dimensions_set_error          PASS        4390.00           0.07      65800.90  **
+                                                        ** test_npu.cycle_counts_match_the_schedule   PASS      377500.00          11.61      32512.49  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=8 PASS=8 FAIL=0 SKIP=0                         575950.01          17.02      33837.67  **
+                                                        **************************************************************************************************
+                                                        
+- :0: Verilog $finish
+make[2]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+make[1]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+NPU_PERF_OUT=/home/user/PROJECTS/int8-fp8-accelerator/bench/results/perf_n4.txt make -C tb NPU_N=4
+make[1]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+rm -f results.xml
+"make" -f Makefile results.xml
+make[2]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+mkdir -p sim_build_n4
+/usr/bin/verilator -cc --exe -Mdir sim_build_n4 -DCOCOTB_SIM=1 --top-module npu_top --timescale 1ns/1ps --vpi --public-flat-rw --prefix Vtop -o Vtop -LDFLAGS "-Wl,-rpath,/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -L/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -lcocotbvpi_verilator" -GN=4 -Wno-fatal --x-assign unique --x-initial unique /home/user/PROJECTS/int8-fp8-accelerator/tb/../rtl/npu_pe.sv /home/user/PROJECTS/int8-fp8-accelerator/tb/../rtl/npu_post.sv /home/user/PROJECTS/int8-fp8-accelerator/tb/../rtl/npu_top.sv /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/share/lib/verilator/verilator.cpp
+make -C sim_build_n4  -f Vtop.mk
+make[3]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb/sim_build_n4'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -Os -c -o verilator.o /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/share/lib/verilator/verilator.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated_vpi.o /usr/share/verilator/include/verilated_vpi.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o verilated_threads.o /usr/share/verilator/include/verilated_threads.cpp
+/usr/bin/python3 /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtop.cpp Vtop___024root__DepSet_h84412442__0.cpp Vtop___024root__DepSet_heccd7ead__0.cpp Vtop_npu_pe__DepSet_hd6ab67f1__0.cpp Vtop__Dpi.cpp Vtop___024root__Slow.cpp Vtop___024root__DepSet_h84412442__0__Slow.cpp Vtop___024root__DepSet_heccd7ead__0__Slow.cpp Vtop_npu_pe__Slow.cpp Vtop_npu_pe__DepSet_hd6ab67f1__0__Slow.cpp Vtop__Syms.cpp > Vtop__ALL.cpp
+g++ -Os  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable       -c -o Vtop__ALL.o Vtop__ALL.cpp
+echo "" > Vtop__ALL.verilator_deplist.tmp
+Archive ar -rcs Vtop__ALL.a Vtop__ALL.o
+g++     verilator.o verilated.o verilated_dpi.o verilated_vpi.o verilated_threads.o Vtop__ALL.a   -Wl,-rpath,/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -L/home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb/libs -lcocotbvpi_verilator  -pthread -lpthread -latomic   -o Vtop
+rm Vtop__ALL.verilator_deplist.tmp
+make[3]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb/sim_build_n4'
+rm -f results.xml
+MODULE=test_npu TESTCASE= TOPLEVEL=npu_top TOPLEVEL_LANG=verilog \
+         sim_build_n4/Vtop  -GN=4 -Wno-fatal --x-assign unique --x-initial unique  
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Verilator version 5.020 2024-01-01
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1792052572
+     0.00ns INFO     cocotb.regression                  Found test test_npu.int8_random_shapes
+     0.00ns INFO     cocotb.regression                  Found test test_npu.int8_extremes_and_bias
+     0.00ns INFO     cocotb.regression                  Found test test_npu.int8_requantisation
+     0.00ns INFO     cocotb.regression                  Found test test_npu.fp8_e4m3_random
+     0.00ns INFO     cocotb.regression                  Found test test_npu.fp8_e5m2_random_and_specials
+     0.00ns INFO     cocotb.regression                  Found test test_npu.fp8_exact_accumulation_and_ties
+     0.00ns INFO     cocotb.regression                  Found test test_npu.bad_dimensions_set_error
+     0.00ns INFO     cocotb.regression                  Found test test_npu.cycle_counts_match_the_schedule
+     0.00ns INFO     cocotb.regression                  running int8_random_shapes (1/8)
+ 78270.00ns INFO     cocotb.regression                  int8_random_shapes passed
+ 78270.00ns INFO     cocotb.regression                  running int8_extremes_and_bias (2/8)
+124130.00ns INFO     cocotb.regression                  int8_extremes_and_bias passed
+124130.00ns INFO     cocotb.regression                  running int8_requantisation (3/8)
+179060.00ns INFO     cocotb.regression                  int8_requantisation passed
+179060.00ns INFO     cocotb.regression                  running fp8_e4m3_random (4/8)
+264960.00ns INFO     cocotb.regression                  fp8_e4m3_random passed
+264960.00ns INFO     cocotb.regression                  running fp8_e5m2_random_and_specials (5/8)
+288130.01ns INFO     cocotb.regression                  fp8_e5m2_random_and_specials passed
+288130.01ns INFO     cocotb.regression                  running fp8_exact_accumulation_and_ties (6/8)
+                                                          Results a sequential FP32 accumulation would get wrong.
+289100.01ns INFO     cocotb.regression                  fp8_exact_accumulation_and_ties passed
+289100.01ns INFO     cocotb.regression                  running bad_dimensions_set_error (7/8)
+293490.01ns INFO     cocotb.regression                  bad_dimensions_set_error passed
+293490.01ns INFO     cocotb.regression                  running cycle_counts_match_the_schedule (8/8)
+1169390.01ns INFO     cocotb.regression                  cycle_counts_match_the_schedule passed
+1169390.01ns INFO     cocotb.regression                  **************************************************************************************************
+                                                         ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                         **************************************************************************************************
+                                                         ** test_npu.int8_random_shapes                PASS       78270.00           1.89      41446.73  **
+                                                         ** test_npu.int8_extremes_and_bias            PASS       45860.00           1.22      37447.84  **
+                                                         ** test_npu.int8_requantisation               PASS       54930.00           1.62      33986.41  **
+                                                         ** test_npu.fp8_e4m3_random                   PASS       85900.00           2.71      31728.26  **
+                                                         ** test_npu.fp8_e5m2_random_and_specials      PASS       23170.00           0.80      29064.40  **
+                                                         ** test_npu.fp8_exact_accumulation_and_ties   PASS         970.00           0.02      50574.04  **
+                                                         ** test_npu.bad_dimensions_set_error          PASS        4390.00           0.26      16831.00  **
+                                                         ** test_npu.cycle_counts_match_the_schedule   PASS      875900.00          28.17      31088.69  **
+                                                         **************************************************************************************************
+                                                         ** TESTS=8 PASS=8 FAIL=0 SKIP=0                        1169390.01          36.76      31811.02  **
+                                                         **************************************************************************************************
+                                                         
+- :0: Verilog $finish
+make[2]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+make[1]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+make -C tb -f Makefile.small
+make[1]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+rm -f results_small_rtl.xml
+"make" -f Makefile.small results_small_rtl.xml
+make[2]: Entering directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+rm -f results_small_rtl.xml
+MODULE=test_small TESTCASE= TOPLEVEL=npu_top_pd TOPLEVEL_LANG=verilog \
+         sim_build_small_rtl/Vtop  -Wno-fatal -Wno-lint -Wno-style --x-assign unique --x-initial unique   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Verilator version 5.020 2024-01-01
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /home/user/PROJECTS/int8-fp8-accelerator/.venv/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1792052620
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_int8_random_shapes
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_int8_extremes_and_bias
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_int8_requantisation
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_fp8_e4m3
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_fp8_e5m2_and_specials
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_fp8_exact_accumulation_and_ties
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_bad_dimensions_set_error
+     0.00ns INFO     cocotb.regression                  Found test test_small.small_cycle_counts
+     0.00ns INFO     cocotb.regression                  running small_int8_random_shapes (1/8)
+ 10890.00ns INFO     cocotb.regression                  small_int8_random_shapes passed
+ 10890.00ns INFO     cocotb.regression                  running small_int8_extremes_and_bias (2/8)
+ 17750.00ns INFO     cocotb.regression                  small_int8_extremes_and_bias passed
+ 17750.00ns INFO     cocotb.regression                  running small_int8_requantisation (3/8)
+ 26570.00ns INFO     cocotb.regression                  small_int8_requantisation passed
+ 26570.00ns INFO     cocotb.regression                  running small_fp8_e4m3 (4/8)
+ 35620.00ns INFO     cocotb.regression                  small_fp8_e4m3 passed
+ 35620.00ns INFO     cocotb.regression                  running small_fp8_e5m2_and_specials (5/8)
+ 43580.00ns INFO     cocotb.regression                  small_fp8_e5m2_and_specials passed
+ 43580.00ns INFO     cocotb.regression                  running small_fp8_exact_accumulation_and_ties (6/8)
+ 44550.01ns INFO     cocotb.regression                  small_fp8_exact_accumulation_and_ties passed
+ 44550.01ns INFO     cocotb.regression                  running small_bad_dimensions_set_error (7/8)
+ 48940.01ns INFO     cocotb.regression                  small_bad_dimensions_set_error passed
+ 48940.01ns INFO     cocotb.regression                  running small_cycle_counts (8/8)
+ 55080.01ns INFO     cocotb.regression                  small_cycle_counts passed
+ 55080.01ns INFO     cocotb.regression                  **********************************************************************************************************
+                                                        ** TEST                                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************
+                                                        ** test_small.small_int8_random_shapes                PASS       10890.00           0.27      40877.49  **
+                                                        ** test_small.small_int8_extremes_and_bias            PASS        6860.00           0.15      46599.08  **
+                                                        ** test_small.small_int8_requantisation               PASS        8820.00           0.19      45837.97  **
+                                                        ** test_small.small_fp8_e4m3                          PASS        9050.00           0.20      44716.77  **
+                                                        ** test_small.small_fp8_e5m2_and_specials             PASS        7960.00           0.18      43469.45  **
+                                                        ** test_small.small_fp8_exact_accumulation_and_ties   PASS         970.00           0.04      22000.10  **
+                                                        ** test_small.small_bad_dimensions_set_error          PASS        4390.00           0.07      59652.89  **
+                                                        ** test_small.small_cycle_counts                      PASS        6140.00           0.11      57172.04  **
+                                                        **********************************************************************************************************
+                                                        ** TESTS=8 PASS=8 FAIL=0 SKIP=0                                  55080.01           1.31      42002.40  **
+                                                        **********************************************************************************************************
+                                                        
+- :0: Verilog $finish
+make[2]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+make[1]: Leaving directory '/home/user/PROJECTS/int8-fp8-accelerator/tb'
+mkdir -p synth/results && yosys -q -s synth/area.ys
+flow/scripts/sv2v.sh npu_top_pd flow/build/npu_top_pd.v flow/src/npu_top_pd.sv
+sv2v: wrote flow/build/npu_top_pd.v (682 lines)
+mkdir -p synth/results && yosys -q -p "read_verilog flow/build/npu_top_pd.v; synth -top npu_top_pd -flatten; tee -o synth/results/top_n4_generic.txt stat"
+Warning: Replacing memory \b_skew with list of registers. See flow/build/npu_top_pd.v:409
+Warning: Replacing memory \v_skew with list of registers. See flow/build/npu_top_pd.v:408
+Warning: Replacing memory \a_skew with list of registers. See flow/build/npu_top_pd.v:407
+Warning: Replacing memory \b_rd with list of registers. See flow/build/npu_top_pd.v:387
+Warning: Replacing memory \a_rd with list of registers. See flow/build/npu_top_pd.v:376
+
+real	4m40.184s
+user	2m8.125s
+sys	0m10.843s

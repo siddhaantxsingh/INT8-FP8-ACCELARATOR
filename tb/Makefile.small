@@ -1,0 +1,23 @@
+# Small physical-design configuration (N=4, 8x8x16 scratchpads), test_small.py.
+# RTL:   make -C tb -f Makefile.small
+# Gates: make -C tb -f Makefile.small SMALL_SRC="<netlist.v> <cell models.v>" SMALL_TAG=gls_route
+# (flow/scripts/gls.sh does the gate-level runs.)
+SIM ?= verilator
+TOPLEVEL_LANG = verilog
+SMALL_TAG ?= rtl
+SMALL_SRC ?= $(PWD)/../rtl/npu_pe.sv $(PWD)/../rtl/npu_post.sv $(PWD)/../rtl/npu_top.sv $(PWD)/../flow/src/npu_top_pd.sv
+VERILOG_SOURCES = $(SMALL_SRC)
+TOPLEVEL = npu_top_pd
+MODULE = test_small
+ifeq ($(SIM),verilator)
+EXTRA_ARGS += -Wno-fatal -Wno-lint -Wno-style --x-assign unique --x-initial unique $(SMALL_EXTRA)
+else
+COMPILE_ARGS += $(SMALL_EXTRA)
+endif
+SIM_BUILD = sim_build_small_$(SMALL_TAG)
+COCOTB_RESULTS_FILE = results_small_$(SMALL_TAG).xml
+export NPU_N = 4
+export NPU_MAX_M = 8
+export NPU_MAX_N = 8
+export NPU_MAX_K = 16
+include $(shell cocotb-config --makefiles)/Makefile.sim
